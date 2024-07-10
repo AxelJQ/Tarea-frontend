@@ -7,7 +7,6 @@ import { ModalComponent } from '../../modal/modal.component';
 import { UserFormComponent } from '../user-from/user-form.component';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-user-list',
   standalone: true,

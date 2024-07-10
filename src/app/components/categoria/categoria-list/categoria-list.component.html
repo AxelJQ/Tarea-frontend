@@ -1,0 +1,46 @@
+<div class="table-container table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          @if(roleId === 102){
+            <th class="text-center" scope="col">Actions</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of categoriaList; track item.id) {
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.nombre}}</td>
+          <td>{{item.descripcion}}</td>
+            @if(roleId === 102) {
+              <td>
+                <div class="d-flex justify-content-evenly align-items-center">
+                  <button type="button" (click)="showDetail(item, formModal)" class="btn btn-secondary">
+                    <i class="fa-solid fa-eye white"
+                    ></i>
+                  </button>
+                  <button type="button" (click)="deleteCategoria(item)" class="btn btn-danger">
+                    <i class="fa-solid fa-trash white"
+                    ></i>
+                  </button>
+                </div>
+              </td>
+            }
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
+  <app-modal size="lg" #formModal>
+    <app-categoria-form 
+    [categoria]="currentCategoria" 
+    [action]="'edit'"
+    [title]="'Update User'"
+    >
+  </app-categoria-form>
+  </app-modal>

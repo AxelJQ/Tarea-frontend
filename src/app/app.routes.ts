@@ -8,7 +8,11 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { AdminRoleGuard } from './guards/admin-role.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GuestGuard } from './guards/guest.guard';
-import { IRole } from './interfaces';
+import { IRoleType } from './interfaces';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { GamesComponent } from './pages/games/games.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { ProductosComponent } from './pages/productos/productos.component';
 
 export const routes: Routes = [
   {
@@ -46,10 +50,10 @@ export const routes: Routes = [
         canActivate:[AdminRoleGuard],
         data: { 
           authorities: [
-            IRole.admin, 
-            IRole.superAdmin
+            IRoleType.superAdmin
           ],
-          name: 'Users'
+          name: 'Users',
+          showInSidebar: true
         }
       },
       {
@@ -57,11 +61,59 @@ export const routes: Routes = [
         component: DashboardComponent,
         data: { 
           authorities: [
-            IRole.admin, 
-            IRole.superAdmin,
-            IRole.user
+            IRoleType.superAdmin,
+            IRoleType.user
           ],
-          name: 'Dashboard'
+          name: 'Dashboard',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: { 
+          authorities: [ 
+            IRoleType.superAdmin,
+            IRoleType.user
+          ],
+          name: 'profile',
+          showInSidebar: false
+        }
+      },
+      {
+        path: 'games',
+        component: GamesComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'games',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'productos',
+        component: ProductosComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Productos',
+          showInSidebar: true
+        }
+      },
+      {
+        path: 'categorias',
+        component: CategoriasComponent,
+        data: { 
+          authorities: [
+            IRoleType.superAdmin,
+            IRoleType.user,
+          ],
+          name: 'Categorias',
+          showInSidebar: true
         }
       }
     ],

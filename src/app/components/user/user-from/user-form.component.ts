@@ -42,7 +42,7 @@ export class UserFormComponent {
           this.feedbackMessage.type = IFeedbackStatus.error;
           this.feedbackMessage.message = error.message;
         }
-      })
+      });
     }
   }
 }
